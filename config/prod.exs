@@ -1,7 +1,7 @@
 use Mix.Config
 
 config :api, Api.Endpoint,
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   http: [port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   url: [host: "rocky-beach-94063.herokuapp.com", port: 443],
