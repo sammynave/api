@@ -1,10 +1,15 @@
 language: elixir
 elixir:
-  - 1.4.1
+- 1.4.1
 otp_release:
-  - 19.2
+- 19.2
 sudo: false
 addons:
   postgresql: '9.4'
 before_script:
 - psql -c 'create database api_test;' -U postgres
+deploy:
+  provider: heroku
+  api_key:
+    secure: jMymropiAbGi33FlflqRb2T22sxdv7kMh6XyL+70NaFUAeHVy9vMEgfAyL3EAPChsxQ6D/CvbI+uO+cxnz7SI2XgK5gLlz38hQcYdYLJ3nFcRm0FkcyVHuMmKbCfJ+CNLY8llht6x7iGTXoF1PLQ9O4WqNG+2YI/RfgTDT5QuHueYBvQq2xjJjU3k1TnfCtokD6LfxTmzcF90DjnG65yMOEZG02XrLg74ACtCzMYlEVihWzO0NLnev6B2Is2Svue3B1wizt/dNKOUSVJnmttMcWdJB/9C1dwglxhitNBi9iEHoydhNz0URldkvaoHBZYcvHoVlbNlcephCNEETqgHAV6RPE8nxmFmwyYjcvKJLmyTcNs35ds0GDQ5Cs/TMKn/pOvgK6EyXJUl0DBlVrHT4/gGJmkrAoDHFWeiu6x486BPS5j3II9LBenATS62Wj6ov6XMQbR3N/PhvkICQtiVC+ziKtiNyGS18J1uJ83sT2c/1uAL8vPllSLlZMGM2OazNvLKqvk+R0ODYDJ+ieoyranDDAYgERoOnPxe6ixH3xbxYlWFz63o9HqeQFwTZmGa+69q0mOfjmAtmeV7JxFUooPHbTMlXj6rua1BB8kjiYbaapnG7rvDowrErPQEt/MERT/0AcVUZZVpF0XJpZBx49Nlgw7z4NaDpY0sdf8lEs=
+  app: rocky-beach-94063
