@@ -7,6 +7,9 @@ defmodule Api.Router do
 
   scope "/api", Api do
     pipe_through :api
-    resources "session", SessionController, only: [:index]
+    # Registration
+    post "/register", RegistrationController, :create
+    # Route stuff to our SessionController
+    resources "/session", SessionController, only: [:index]
   end
 end
