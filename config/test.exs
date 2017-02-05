@@ -15,5 +15,5 @@ config :api, Api.Repo,
   username: "postgres",
   password: "postgres",
   database: "api_test",
-  hostname: "db",
+  hostname: System.get_env("DATABASE_HOSTNAME") || "db",
   pool: Ecto.Adapters.SQL.Sandbox
