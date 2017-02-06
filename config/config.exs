@@ -32,7 +32,7 @@ config :mime, :types, %{
 config :guardian, Guardian,
   allowed_algos: ["HS512"], # optional
   verify_module: Guardian.JWT,  # optional
-  issuer: "Peepchat",
+  issuer: "Chat",
   ttl: { 30, :days },
   verify_issuer: true, # optional
   secret_key: System.get_env("GUARDIAN_SECRET") || "dev_key",
