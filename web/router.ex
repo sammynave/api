@@ -22,5 +22,9 @@ defmodule Api.Router do
   scope "/api", Api do
     pipe_through :api_auth
     get "/user/current", UserController, :current
+    resources "/user", UserController, only: [:show, :index] do
+      get "rooms", RoomController, :index, as: :rooms
+    end
+    resources "/rooms", RoomController, except: [:new, :edit]
   end
 end
