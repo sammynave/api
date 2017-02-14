@@ -16,7 +16,7 @@ defmodule Api.RegistrationController do
       {:ok, user} ->
         conn
         |> put_status(:created)
-        |> render(Api.UserView, "show.json", user: user)
+        |> render(Api.UserView, "show.json-api", data: user)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
