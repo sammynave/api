@@ -3,7 +3,7 @@ defmodule Api.Room do
 
   schema "rooms" do
     field :name, :string
-    belongs_to :owner, Api.Owner
+    belongs_to :owner, Api.User
 
     timestamps()
   end

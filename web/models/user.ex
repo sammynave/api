@@ -9,6 +9,9 @@ defmodule Api.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
+    has_many :messages, Api.Message
+    has_many :rooms, Api.Room
+
     timestamps()
   end
 

@@ -1,8 +1,9 @@
 defmodule Api.UserSocket do
   use Phoenix.Socket
+  use Guardian.Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Api.RoomChannel
+  channel "rooms:*", Api.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
