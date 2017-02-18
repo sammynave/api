@@ -56,10 +56,10 @@ defmodule Api.RoomControllerTest do
      },
     "relationships" => %{
       "owner" => %{
-        "links" => %{"related" => "http://localhost:4001/api/user/#{user.id}"}
+        "links" => %{"related" => "/api/user/#{user.id}"}
       },
       "messages" => %{
-        "links" => %{"related" => "http://localhost:4001/api/rooms/#{room.id}/messages"}
+        "links" => %{"related" => "/api/rooms/#{room.id}/messages"}
       }
     }
    }

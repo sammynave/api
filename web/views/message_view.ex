@@ -7,10 +7,10 @@ defmodule Api.MessageView do
   has_one :room, link: :room_link
 
   def owner_link(message, conn) do
-    user_url(conn, :show, message.owner_id)
+    user_path(conn, :show, message.owner_id)
   end
 
   def room_link(message, conn) do
-    room_url(conn, :show, message.room_id)
+    room_path(conn, :show, message.room_id)
   end
 end

@@ -7,10 +7,10 @@ defmodule Api.UserView do
   has_many :messages, link: :messages_link
 
   def rooms_link(user, conn) do
-    user_rooms_url(conn, :index, user.id)
+    user_rooms_path(conn, :index, user.id)
   end
 
   def messages_link(user, conn) do
-    user_messages_url(conn, :index, user.id)
+    user_messages_path(conn, :index, user.id)
   end
 end
