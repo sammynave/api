@@ -69,9 +69,6 @@ defmodule Api.MessageController do
 
   def broadcast_message(conn, room, message) do
     msg = JaSerializer.format(Api.MessageView, message, conn)
-
-    Logger.debug"> #{inspect message}"
-
     Api.Endpoint.broadcast("rooms:#{message.room_id}", "new:message", %{ message: msg, owner_id: message.owner_id})
   end
 end
