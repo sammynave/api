@@ -1,5 +1,6 @@
 defmodule Api.MessageController do
   use Api.Web, :controller
+  require Logger
 
   alias Api.Message
   plug Guardian.Plug.EnsureAuthenticated, handler: Api.AuthErrorHandler
@@ -28,7 +29,7 @@ defmodule Api.MessageController do
 
    case Repo.insert(changeset) do
       {:ok, message} ->
-        broadcast_message(conn, message)
+        broadcast_message(conn, room, message)
 
         conn
         |> put_status(:created)
@@ -66,8 +67,11 @@ defmodule Api.MessageController do
     send_resp(conn, :no_content, "")
   end
 
-  defp broadcast_message(conn, message) do
+  def broadcast_message(conn, room, message) do
     msg = JaSerializer.format(Api.MessageView, message, conn)
-    Api.RoomChannel.broadcast_message(msg)
+
+    Logger.debug"> #{inspect message}"
+
+    Api.Endpoint.broadcast("rooms:#{message.room_id}", "new:message", %{ message: msg, owner_id: message.owner_id})
   end
 end
