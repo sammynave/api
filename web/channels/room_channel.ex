@@ -1,16 +1,23 @@
 defmodule Api.RoomChannel do
   use Phoenix.Channel
   require Logger
+  import Guardian.Phoenix.Socket
 
   def join("rooms:" <> room_id, message, socket) do
-    Process.flag(:trap_exit, true)
-    send(self, {:after_join, message})
+    user = Guardian.Phoenix.Socket.current_resource(socket)
 
-    {:ok, socket}
+    Process.flag(:trap_exit, true)
+    send(self, {:after_join, %{email: user.email} })
+
+    if user do
+      {:ok, "Hello #{user.email}! Joined Room:#{room_id}", socket}
+    else
+      {:error, %{reason: "unauthorized"}}
+    end
   end
 
-  def handle_info({:after_join, msg}, socket) do
-    broadcast! socket, "user:entered", %{user: msg["user"]}
+  def handle_info({:after_join, message}, socket) do
+    broadcast! socket, "user:entered", %{user: message.email}
     push socket, "join", %{status: "connected"}
     {:noreply, socket}
   end
