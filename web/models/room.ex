@@ -4,6 +4,7 @@ defmodule Api.Room do
   schema "rooms" do
     field :name, :string
     belongs_to :owner, Api.User
+    has_many :messages, Api.Message, on_delete: :delete_all
 
     timestamps()
   end
